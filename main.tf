@@ -41,3 +41,16 @@ module "compute" {
   subnet_id     = module.network.public_subnet_id
   bastion_sg_id = module.network.bastion_sg_id
 }
+
+
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "minikube"
+}
+
+provider "helm" {
+  kubernetes {
+    config_path    = "~/.kube/config"
+    config_context = "minikube"
+  }
+}
